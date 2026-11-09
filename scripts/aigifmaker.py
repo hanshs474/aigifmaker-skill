@@ -92,7 +92,7 @@ def status(task_id, transport=None):
     return call("/api/ai/query", {"taskId": task_id}, transport)
 
 
-def wait(task_id, timeout=300.0, poll_every=3.0, transport=None):
+def wait(task_id, timeout=900.0, poll_every=3.0, transport=None):
     deadline = time.monotonic() + timeout
     while True:
         try:

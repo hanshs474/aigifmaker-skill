@@ -35,9 +35,9 @@ python3 scripts/aigifmaker.py generate "a corgi in sunglasses dancing on a beach
 python3 scripts/aigifmaker.py status <task id>            # the raw task record
 ```
 
-`generate` submits, polls every 3 seconds for up to 5 minutes and prints the GIF URL. Download it as binary and hand the file to the user, or give them the URL.
+`generate` submits, polls every 3 seconds for up to 15 minutes and prints the GIF URL. Download it as binary and hand the file to the user, or give them the URL.
 
-Exit codes: `0` ok · `2` no key or bad key · `3` out of credits (send the user to the [pricing](https://aigifmaker.ai/pricing?utm_source=skill&utm_medium=package) page) · `4` the prompt was refused or a cooldown is active (reword it, do not resend the same text) · `5` the generation failed (its credit is refunded; try once more) · `6` still running after 5 minutes (check later with `status`, do not resubmit).
+Exit codes: `0` ok · `2` no key or bad key · `3` out of credits (send the user to the [pricing](https://aigifmaker.ai/pricing?utm_source=skill&utm_medium=package) page) · `4` the prompt was refused or a cooldown is active (reword it, do not resend the same text) · `5` the generation failed (its credit is refunded; try once more) · `6` still running after 15 minutes (check later with `status`, do not resubmit).
 
 ## The API, if you would rather call it directly
 
