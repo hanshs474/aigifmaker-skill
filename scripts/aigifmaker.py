@@ -11,6 +11,7 @@ Exit codes: 0 ok · 2 auth (no / bad key) · 3 out of credits · 4 rejected prom
 """
 from __future__ import annotations
 
+import http.client as http_client
 import json
 import os
 import sys
@@ -94,7 +95,10 @@ def status(task_id, transport=None):
 def wait(task_id, timeout=300.0, poll_every=3.0, transport=None):
     deadline = time.monotonic() + timeout
     while True:
-        data = status(task_id, transport)
+        try:
+            data = status(task_id, transport)
+        except (OSError, http_client.HTTPException):
+            data = {}  # a dropped poll is not a failed generation
         state = str(data.get("status") or "").lower()
         if state == "success" and data.get("images"):
             return str(data["images"][0])
